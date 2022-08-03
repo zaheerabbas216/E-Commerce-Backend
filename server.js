@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const UserRoutes = require("./Routes/User.routes");
+const RequestRoutes = require("./Routes/Request.routes");
 const { verifyAccessToken } = require("./helpers/jwt_helpers");
 
 const app = express();
@@ -36,3 +37,4 @@ app.get("/", (req, res) => {
   res.send("PONG!");
 });
 app.use("/user", UserRoutes);
+app.use("/request", verifyAccessToken, RequestRoutes);
